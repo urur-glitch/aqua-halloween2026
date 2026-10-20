@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<!-- Google アナリティクス（GA4）測定ID: G-525F5RWYRQ（アクアイグニス仙台 広報 ／ ハロウィン2026） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-525F5RWYRQ"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-525F5RWYRQ');
+</script>
+<title>かくれかぼちゃ｜アクアイグニス仙台</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<style>
+/* Layout: one dark candlelit stage, pumpkin centered, message beneath, quiet footer of three "lanterns" (stamps). Single deliberate dark look. */
+:root{
+  --night:#120d14;      /* 墨に葡萄を一滴 */
+  --night-2:#1d1520;
+  --ember:#e8913a;      /* 蝋燭の炎 */
+  --ember-soft:#f3c27a;
+  --bone:#ece4d6;       /* 骨白 */
+  --ash:#9a8f94;        /* 灰 */
+  --line:#3a2e3c;
+  --display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important} /* hidden属性を確実に効かせる（試作バー等が本番で出ないように） */
+html,body{min-height:100%}
+body{
+  background:radial-gradient(120% 70% at 50% 18%, var(--night-2) 0%, var(--night) 62%) fixed, var(--night);
+  color:var(--bone);font-family:var(--body);font-size:17px;line-height:1.9;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  overflow-x:hidden;
+}
+#embers{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+main{position:relative;z-index:1;max-width:440px;margin:0 auto;padding-block:28px 120px;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
+
+.eyebrow{font-family:var(--display);font-size:12px;letter-spacing:.42em;color:var(--ash);padding-left:.42em}
+.eyebrow b{color:var(--ember-soft);font-weight:500}
+
+/* pumpkin */
+.stage{position:relative;width:min(78vw,300px);aspect-ratio:1/1;max-width:100%}
+.stage svg{width:100%;height:100%;overflow:visible}
+.halo{position:absolute;inset:8% 8% 0;border-radius:50%;background:radial-gradient(circle, rgba(232,145,58,.38), rgba(232,145,58,0) 66%);opacity:0;transition:opacity 1.6s ease;filter:blur(6px)}
+.lit .halo{opacity:1;animation:breathe 3.2s ease-in-out infinite 1.6s}
+.face{fill:#2a1a12;transition:fill 1.4s ease}
+.lit .face{fill:var(--ember);animation:flicker 2.6s infinite 1.4s}
+.inner-glow{opacity:0;transition:opacity 1.6s ease}
+.lit .inner-glow{opacity:1}
+.body-shade{transition:fill 1.6s ease}
+@keyframes flicker{0%,100%{fill:#e8913a}18%{fill:#f3b061}22%{fill:#d97b2c}48%{fill:#f0a24c}52%{fill:#c96f26}80%{fill:#efa953}}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.06);opacity:1}}
+
+/* smoke */
+.smoke{position:absolute;left:50%;top:2%;width:10px;height:60px;transform:translateX(-50%);pointer-events:none}
+.smoke span{position:absolute;bottom:0;left:0;width:10px;height:10px;border-radius:50%;background:rgba(236,228,214,.18);filter:blur(4px);opacity:0}
+.lit .smoke span{animation:rise 4s ease-out infinite}
+.lit .smoke span:nth-child(2){animation-delay:1.3s}
+.lit .smoke span:nth-child(3){animation-delay:2.6s}
+@keyframes rise{0%{transform:translate(0,0) scale(.6);opacity:0}20%{opacity:.9}100%{transform:translate(14px,-70px) scale(2.4);opacity:0}}
+
+/* message */
+.msg{min-height:7.5em;display:flex;flex-direction:column;gap:12px;align-items:center}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,8vw,36px);line-height:1.5;letter-spacing:.1em;margin:0}
+h1 .ln{display:block;white-space:nowrap}
+.sub,.hint p,.ask .q,.chips button,.foot{word-break:keep-all;word-break:auto-phrase;line-break:strict;overflow-wrap:anywhere}
+h1 .ch{opacity:0;display:inline-block;filter:blur(6px);transform:translateY(4px);transition:opacity .7s ease, filter .9s ease, transform .9s ease}
+h1 .ch.on{opacity:1;filter:blur(0);transform:none}
+.sub{font-size:18px;color:#c4b9bc;max-width:30em;margin:0;letter-spacing:.06em;opacity:0;transition:opacity 1.2s ease}
+.sub.on{opacity:1}
+.name{font-family:var(--display);color:var(--ember-soft);letter-spacing:.2em;font-size:16px}
+
+/* lanterns (stamps) */
+.lanterns{display:flex;gap:26px;justify-content:center;padding-top:6px}
+.lantern{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:14px;letter-spacing:.2em;color:var(--ash)}
+.lantern svg{width:48px;height:48px}
+.lantern .lf{fill:#2a1f2c;stroke:var(--line);stroke-width:1.5;transition:fill .8s, filter .8s}
+.lantern.found .lf{fill:var(--ember);stroke:var(--ember-soft);filter:drop-shadow(0 0 6px rgba(232,145,58,.7))}
+.lantern.found{color:var(--ember-soft)}
+.lantern.now .lf{animation:pop .9s ease}
+@keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.lantern svg{transform-box:fill-box}
+.count{font-family:var(--display);font-size:16px;letter-spacing:.2em;color:var(--ash)}
+.count b{color:var(--bone);font-size:24px;font-weight:800;letter-spacing:.1em}
+
+/* hint */
+.hint{width:100%;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:16px;display:flex;flex-direction:column;gap:4px;opacity:0;transition:opacity 1s ease}
+.hint.on{opacity:1}
+.hint .label{font-size:14px;letter-spacing:.3em;color:var(--ember-soft)}
+.hint p{margin:0;font-family:var(--display);font-size:20px;font-weight:700;letter-spacing:.08em;line-height:1.7}
+
+/* survey */
+.ask{width:100%;display:flex;flex-direction:column;gap:12px;opacity:0;transition:opacity 1s ease}
+.ask.on{opacity:1}
+.ask .q{font-size:16px;color:var(--ash);margin:0}
+.chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.chips button{font:inherit;font-size:16px;color:var(--bone);background:transparent;border:1px solid var(--line);border-radius:2px;padding:11px 8px;cursor:pointer;transition:border-color .3s, background .3s}
+.chips button:hover{border-color:var(--ember)}
+.chips button:focus-visible{outline:2px solid var(--ember-soft);outline-offset:2px}
+.thanks{font-size:17px;color:var(--ember-soft);margin:0}
+
+/* complete */
+.seal{font-family:var(--display);font-size:16px;font-weight:700;letter-spacing:.3em;color:var(--night);background:var(--ember);padding:6px 14px 6px 18px;opacity:0;transition:opacity 1s ease}
+.seal.on{opacity:1}
+
+.foot{font-size:11px;color:var(--ash);letter-spacing:.12em;opacity:.8}
+
+/* demo bar (試作用。本番では非表示) */
+.demo{position:fixed;left:0;right:0;bottom:0;z-index:5;background:rgba(18,13,20,.92);backdrop-filter:blur(6px);border-top:1px solid var(--line);
+  padding:10px max(16px, env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px, env(safe-area-inset-left,0px));
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;font-size:12px;color:var(--ash)}
+.demo button{font:inherit;color:var(--bone);background:var(--night-2);border:1px solid var(--line);padding:6px 12px;cursor:pointer}
+.demo button:focus-visible{outline:2px solid var(--ember-soft)}
+.demo .tag{letter-spacing:.2em}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+}
+</style>
+
+</head>
+<body>
+<canvas id="embers" aria-hidden="true"></canvas>
+
+<main>
+  <div class="eyebrow">AQUA IGNIS SENDAI <b>·</b> HALLOWEEN</div>
+
+  <div class="stage" id="stage" aria-hidden="true">
+    <div class="halo"></div>
+    <div class="smoke"><span></span><span></span><span></span></div>
+    <svg viewBox="0 0 200 200">
+      <defs>
+        <radialGradient id="pg" cx="45%" cy="38%" r="70%">
+          <stop offset="0" stop-color="#5a3b2a"/>
+          <stop offset=".7" stop-color="#2e1d17"/>
+          <stop offset="1" stop-color="#1a110e"/>
+        </radialGradient>
+        <radialGradient id="ig" cx="50%" cy="55%" r="50%">
+          <stop offset="0" stop-color="rgba(243,194,122,.55)"/>
+          <stop offset="1" stop-color="rgba(243,194,122,0)"/>
+        </radialGradient>
+      </defs>
+      <!-- stem -->
+      <path d="M98 40 C96 30 99 22 108 16 L112 20 C106 25 105 32 106 41 Z" fill="#3b4a2c"/>
+      <!-- ribs -->
+      <g class="body-shade" fill="url(#pg)" stroke="#120d0b" stroke-width="1.2">
+        <ellipse cx="62" cy="112" rx="40" ry="62"/>
+        <ellipse cx="138" cy="112" rx="40" ry="62"/>
+        <ellipse cx="80" cy="110" rx="34" ry="66"/>
+        <ellipse cx="120" cy="110" rx="34" ry="66"/>
+        <ellipse cx="100" cy="108" rx="30" ry="68"/>
+      </g>
+      <ellipse class="inner-glow" cx="100" cy="122" rx="62" ry="46" fill="url(#ig)"/>
+      <!-- carved face -->
+      <g class="face">
+        <path d="M66 96 L86 92 L80 112 Z"/>
+        <path d="M134 96 L114 92 L120 112 Z"/>
+        <path d="M100 112 L94 126 L106 126 Z"/>
+        <path d="M58 136 Q100 166 142 136 L134 140 L128 133 L120 144 L112 136 L104 147 L96 136 L88 147 L80 136 L72 144 L66 134 Z"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="msg" aria-live="polite">
+    <div class="name" id="name"></div>
+    <h1 id="title"></h1>
+    <p class="sub" id="sub"></p>
+  </div>
+
+  <div class="seal" id="seal" hidden>みっつ みつけた</div>
+
+  <div class="count" id="count"></div>
+  <div class="lanterns" id="lanterns"></div>
+
+  <div class="hint" id="hint" hidden>
+    <span class="label">つぎの ヒント</span>
+    <p id="hintText"></p>
+  </div>
+
+  <div class="ask" id="ask" hidden>
+    <p class="q">ひとつだけ おしえてね。<br>この かぼちゃのこと、なにで しった？</p>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <div class="foot">アクアイグニス仙台　ハロウィン<br>10.24（土）— 10.31（土）</div>
+  <div class="foot" style="font-size:10px;opacity:.6">このページはアクセス解析（Google アナリティクス）を使用しています。</div>
+</main>
+
+<div class="demo" id="demo">
+  <span class="tag">試作プレビュー</span>
+  <button type="button" id="d1">1（屋上）を読む</button>
+  <button type="button" id="d2">2（鹿のお尻）を読む</button>
+  <button type="button" id="d3">3（Rebornハウステラス）を読む</button>
+  <button type="button" id="dr">リセット</button>
+</div>
+
+<script>
+/* ===== 設定（ここを書き換えれば次のイベントにも流用できます） ===== */
+const DEMO = false;                       // 本番では false
+const EVENT_ID = 'halloween2026';
+const PUMPKINS = {
+  1:{ name:'かぼちゃ　いち', place:'屋上',                       hint:'いちばん たかい ところ。<br>そらに ちかい ばしょで<br>まっているよ。' },
+  2:{ name:'かぼちゃ　に',   place:'鹿のお尻',                   hint:'つのが ある どうぶつの<br>うしろすがたを みてごらん。' },
+  3:{ name:'かぼちゃ　さん', place:'Rebornハウス テラス（フード販売の近く）', hint:'おいしい においが する<br>テラスの ちかくに いるよ。' }
+};
+const LINES = [ // 何個目に見つけたかで台詞が変わる
+  { t:'みつけて、/くれたんだね。', s:'ずっと、ここで まっていたよ。<br>どこかに、あと ふたつ。' },
+  { t:'また、あえたね。',         s:'あかりが ひとつ、ふえたよ。<br>のこりは、あと ひとつだけ。' },
+  { t:'みっつとも、/みつけてくれた。', s:'ありがとう。<br>もう さみしくないよ。<br>また べつの きせつに、あおうね。' }
+];
+const SEEN_LINE = { t:'この かぼちゃとは、/もう あったね。', s:'ほかの あかりを、<br>さがしてみてね。' };
+const SOURCES = ['ポスターを みた','X・SNS','スタッフに きいた','ぐうぜん みつけた'];
+
+/* ===== 計測（本番ではGA4に送る。今は画面に出さず console のみ） ===== */
+function track(name, params){
+  const p = Object.assign({ event_id:EVENT_ID }, params||{});
+  try{ if(window.gtag) window.gtag('event', name, p); }catch(e){}
+  try{ console.log('[track]', name, p); }catch(e){}
+}
+
+/* ===== 端末内の記録 ===== */
+const KEY = 'kakure-pumpkin-'+EVENT_ID;
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || {found:[],asked:false}; }catch(e){ return {found:[],asked:false}; } }
+function save(s){ try{ localStorage.setItem(KEY, JSON.stringify(s)); }catch(e){} }
+
+/* ===== 画面 ===== */
+const $ = id => document.getElementById(id);
+const lanternSvg = '<svg viewBox="0 0 40 40" aria-hidden="true"><path class="lf" d="M20 9c-2 0-3-3-1-5l2 1c-1 1-1 2 0 3 9 0 16 6 16 15s-7 14-17 14S3 32 3 23 10 9 20 9z"/></svg>';
+let timers = [];
+function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
+function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+
+function readPumpkinId(){
+  const h = (location.hash||'').replace('#','');
+  const m = h.match(/^p([123])$/);
+  if(m) return +m[1];
+  try{ const q = new URLSearchParams(location.search).get('p'); if(/^[123]$/.test(q)) return +q; }catch(e){}
+  return null;
+}
+
+function renderLanterns(state, justFound){
+  $('lanterns').innerHTML = [1,2,3].map(i=>{
+    const f = state.found.includes(i);
+    return `<div class="lantern${f?' found':''}${i===justFound?' now':''}">${lanternSvg}<span>${['いち','に','さん'][i-1]}</span></div>`;
+  }).join('');
+  $('count').innerHTML = `みつけた かず　<b>${state.found.length}</b> / 3`;
+}
+
+function typeTitle(text, startMs){
+  const h = $('title');
+  // 「/」で改行。行の途中では折り返さない
+  h.innerHTML = text.split('/').map(line=>
+    `<span class="ln">${[...line].map(c=>`<span class="ch">${c===' '?'&nbsp;':c}</span>`).join('')}</span>`
+  ).join('');
+  const chars = [...h.querySelectorAll('.ch')];
+  chars.forEach((el,i)=> later(()=>el.classList.add('on'), startMs + i*110));
+  return startMs + chars.length*110;
+}
+
+function play(id){
+  clearTimers();
+  const stage = $('stage');
+  stage.classList.remove('lit');
+  ['sub','hint','ask','seal'].forEach(k=>$(k).classList.remove('on'));
+  $('hint').hidden = true; $('ask').hidden = true; $('seal').hidden = true;
+
+  const state = load();
+  let line, firstTime = false;
+
+  if(!id){
+    $('name').textContent = '';
+    line = { t:'どこかに、/かぼちゃが みっつ。', s:'QRコードを みつけたら、<br>よみとってみてね。' };
+  } else if(state.found.includes(id)){
+    line = SEEN_LINE;
+    $('name').textContent = PUMPKINS[id].name;
+    track('pumpkin_rescan', { pumpkin_id:id, found_count:state.found.length });
+  } else {
+    firstTime = true;
+    state.found.push(id); save(state);
+    line = LINES[state.found.length-1];
+    $('name').textContent = PUMPKINS[id].name;
+    track('pumpkin_found', { pumpkin_id:id, found_count:state.found.length, place:PUMPKINS[id].place });
+    if(state.found.length===3) track('pumpkin_complete', {});
+  }
+
+  renderLanterns(state, firstTime ? id : null);
+  $('title').innerHTML = ''; $('sub').innerHTML = line.s;
+
+  later(()=>stage.classList.add('lit'), 500);           // 灯がともる
+  const end = typeTitle(line.t, 1700);                   // 一文字ずつ浮かぶ
+  later(()=>$('sub').classList.add('on'), end+300);
+
+  const next = [1,2,3].find(i=>!state.found.includes(i));
+  if(id && next){
+    later(()=>{ $('hintText').innerHTML = PUMPKINS[next].hint; $('hint').hidden=false; requestAnimationFrame(()=>$('hint').classList.add('on')); }, end+1100);
+  }
+  if(state.found.length===3 && firstTime){
+    later(()=>{ $('seal').hidden=false; requestAnimationFrame(()=>$('seal').classList.add('on')); }, end+900);
+  }
+  if(id && !state.asked){
+    later(()=>{ buildAsk(id); $('ask').hidden=false; requestAnimationFrame(()=>$('ask').classList.add('on')); }, end+1600);
+  }
+}
+
+function buildAsk(id){
+  const box = $('chips');
+  box.innerHTML = SOURCES.map((s,i)=>`<button type="button" id="src${i}">${s}</button>`).join('');
+  box.querySelectorAll('button').forEach((b,i)=>b.addEventListener('click',()=>{
+    const st = load(); st.asked = true; save(st);
+    track('pumpkin_source', { pumpkin_id:id, source:SOURCES[i] });
+    $('ask').innerHTML = '<p class="thanks">おしえてくれて、ありがとう。</p>';
+  }));
+}
+
+/* ===== 火の粉 ===== */
+(function embers(){
+  const c = $('embers'), x = c.getContext('2d');
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let w,h,ps=[];
+  function size(){ w=c.width=innerWidth*devicePixelRatio; h=c.height=innerHeight*devicePixelRatio; }
+  size(); addEventListener('resize', size);
+  for(let i=0;i<34;i++) ps.push(spawn(true));
+  function spawn(any){ return { x:Math.random()*w, y:any?Math.random()*h:h+10, r:(Math.random()*1.6+.4)*devicePixelRatio, v:(Math.random()*.35+.12)*devicePixelRatio, d:Math.random()*Math.PI*2, a:Math.random()*.5+.15 }; }
+  (function tick(){
+    x.clearRect(0,0,w,h);
+    ps.forEach((p,i)=>{
+      p.y-=p.v; p.d+=.01; p.x+=Math.sin(p.d)*.3*devicePixelRatio;
+      if(p.y<-10) ps[i]=spawn(false);
+      x.beginPath(); x.arc(p.x,p.y,p.r,0,Math.PI*2);
+      x.fillStyle=`rgba(232,145,58,${p.a})`; x.fill();
+    });
+    requestAnimationFrame(tick);
+  })();
+})();
+
+/* ===== 起動 ===== */
+if(!DEMO) $('demo').hidden = true;
+$('d1').onclick=()=>play(1); $('d2').onclick=()=>play(2); $('d3').onclick=()=>play(3);
+$('dr').onclick=()=>{ try{localStorage.removeItem(KEY);}catch(e){} play(null); };
+addEventListener('hashchange', ()=>play(readPumpkinId()));
+play(readPumpkinId());
+</script>
+
+</body>
+</html>
